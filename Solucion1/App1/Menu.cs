@@ -48,7 +48,7 @@ namespace App1
                                 Console.WriteLine("El código sólo puede ser un número");
                             }
                         }
-                        Console.WriteLine("Ingresa el nombre");
+                        Console.WriteLine("Ingresa el");
                         nombre = Console.ReadLine();
 
 
