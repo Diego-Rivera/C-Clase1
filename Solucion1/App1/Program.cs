@@ -10,14 +10,8 @@ namespace App1
     {
         static void Main(string[] args)
         {
-            
-            Mascota miPerrito = new Mascota(1432456789764531);
-            miPerrito.Nombre = "Cachupin";
-
-            Console.WriteLine("Mi mascota se llama " + miPerrito.Nombre);
-            Console.WriteLine("Su código es: " + miPerrito.Codigo);
-
-            Console.ReadKey();
+            Menu miMenu=new Menu();
+            miMenu.MostrarMenu();
         }
     }
 }
