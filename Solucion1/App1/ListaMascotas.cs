@@ -62,16 +62,56 @@ namespace App1
             int x = 0;
             foreach(Mascota m in misMascotas)
             {
-                if(m.Codigo == codigo)
-                {
-                    misMascotas[x] = null;
-                    res = true;
-                    break;
+                if(m!=null)
+                { 
+                    if(m.Codigo == codigo)
+                    {
+                        misMascotas[x] = null;
+                        res = true;
+                        break;
+                    }
                 }
                 x++;
             }
 
             return res;
+        }
+
+        public bool Modificar(Mascota m)
+        {
+            bool res=false;
+            int x = 0;
+            foreach(Mascota m2 in misMascotas)
+            {
+                if(m2.Codigo == m.Codigo)
+                {
+                    misMascotas[x].Raza = m.Raza;
+                    misMascotas[x].Nombre = m.Nombre;
+                    misMascotas[x].FechaNacimiento = m.FechaNacimiento;
+                    res = true;
+                    break;
+                }
+            }
+
+            return res;
+        }
+
+        public Mascota Buscar(int codigo)
+        {
+            Mascota encontrada = null;
+
+            foreach(Mascota m in misMascotas)
+            {
+                if (m != null)
+                {
+                    if (m.Codigo == codigo)
+                    {
+                        encontrada = m;
+                        break;
+                    }
+                }
+            }
+            return encontrada;
         }
     }
 }

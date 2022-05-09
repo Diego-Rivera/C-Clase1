@@ -71,10 +71,10 @@ namespace App1
 
                         break;
                     case "2":
-                        Console.WriteLine("Presionó 2");
+                        BuscarMascota();
                         break;
                     case "3":
-                        Console.WriteLine("Presionó 3");
+                        Eliminar();
                         break;
                     case "4":
                         Console.WriteLine("Presionó 4");
@@ -90,6 +90,72 @@ namespace App1
                         break;
                 }
 
+            }
+        }
+
+        private void BuscarMascota()
+        {
+            int codigo=0;
+            bool correcto = false;
+            while(!correcto)
+            {
+                try
+                {
+                    Console.WriteLine("Ingresa el código de la mascota");
+                    codigo = int.Parse(Console.ReadLine());
+                    correcto = true;
+                }
+                catch(FormatException)
+                {
+                    Console.WriteLine("El nro del chip no tiene el formato correcto");
+
+                }
+            }
+
+            Mascota e=lista.Buscar(codigo);
+            if(e!=null)
+            {
+                Console.WriteLine("Datos de la mascota");
+                Console.WriteLine("Código: " +  e.Codigo);
+                Console.WriteLine("Nombre: " +  e.Nombre);
+                Console.WriteLine("Fecha de Nacimiento: " + e.FechaNacimiento);
+                Console.WriteLine("Especie: " + e.Especie);
+                Console.WriteLine("Raza: " + e.Raza);
+
+            }
+            else
+            {
+                Console.WriteLine("No se ha encontrado la mascota");
+            }
+        }
+
+        private void Eliminar()
+        {
+            int codigo = 0;
+            bool correcto = false;
+            while (!correcto)
+            {
+                try
+                {
+                    Console.WriteLine("Ingresa el nro del chip del animal");
+                    codigo = int.Parse(Console.ReadLine());
+                    correcto = true;
+                    
+                }
+                catch(FormatException)
+                {
+                    Console.WriteLine("El nro del chip no tiene el formato correcto");
+
+                }
+            }
+
+            if(lista.Eliminar(codigo))
+            {
+                Console.WriteLine("Mascota eliminada!");
+            }
+            else
+            {
+                Console.WriteLine("El código del chip no existe");
             }
         }
     }
