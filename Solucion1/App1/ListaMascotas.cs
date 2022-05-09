@@ -54,5 +54,24 @@ namespace App1
 
             return a;
         }
+
+        public bool Eliminar(int codigo)
+        {
+            bool res = false;
+
+            int x = 0;
+            foreach(Mascota m in misMascotas)
+            {
+                if(m.Codigo == codigo)
+                {
+                    misMascotas[x] = null;
+                    res = true;
+                    break;
+                }
+                x++;
+            }
+
+            return res;
+        }
     }
 }
