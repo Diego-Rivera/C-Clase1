@@ -51,10 +51,21 @@ namespace App1
                         Console.WriteLine("Ingresa el nombre");
                         nombre = Console.ReadLine();
 
-
-                        Console.WriteLine("Ingresa la fecha");
-                        fechaNacimiento = DateTime.Parse(Console.ReadLine());
-
+                        funciona = false;
+                        while(!funciona)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Ingresa la fecha");
+                                fechaNacimiento = DateTime.Parse(Console.ReadLine());
+                                funciona = true;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("El formato de la fecha no es el correcto");
+                            }
+                        }
+                       
 
                         Console.WriteLine("Ingresa la especie");
                         especie = Console.ReadLine();
@@ -77,7 +88,7 @@ namespace App1
                         Eliminar();
                         break;
                     case "4":
-                        Console.WriteLine("Presionó 4");
+                        Modificar();
                         break;
                     case "5":
                         salir = false;
@@ -90,6 +101,76 @@ namespace App1
                         break;
                 }
 
+            }
+        }
+
+        private void Modificar()
+        {
+            int codigo=0;
+            bool correcto = false;
+            while (!correcto)
+            {
+                try
+                {
+                    Console.WriteLine("Ingresa el código de la mascota");
+                    codigo = int.Parse(Console.ReadLine());
+                    correcto = true;
+                }
+                catch(FormatException)
+                {
+                    Console.WriteLine("El código ingresado no tiene el formato correcto");
+
+                }
+            }
+
+            Mascota m = lista.Buscar(codigo);
+            if(m!=null)
+            {
+                string nombre;
+                DateTime fechaNacimiento=DateTime.Now;
+                string especie;
+                string raza;
+
+                Console.WriteLine("Ingresa el nombre");
+                nombre = Console.ReadLine();
+
+                correcto = false;
+                while (!correcto)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingresa la fecha");
+                        fechaNacimiento = DateTime.Parse(Console.ReadLine());
+                        correcto = true;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("El fomato de la fecha no es correcto");
+                    }
+                }
+                Console.WriteLine("Ingresa la especie");
+                especie = Console.ReadLine();
+
+                Console.WriteLine("Ingresa la raza");
+                raza = Console.ReadLine();
+
+                m.Nombre = nombre;
+                m.Raza = raza;
+                m.FechaNacimiento = fechaNacimiento;
+                m.Especie = especie;
+                if(lista.Modificar(m))
+                {
+                    Console.WriteLine("Mascota Modificada");
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo modificar");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No se ha encontrado la mascota");
             }
         }
 
